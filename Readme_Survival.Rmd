@@ -1,32 +1,18 @@
 ---
-title: "Draft"
-author: "Fatema"
-date: "`r Sys.Date()`"
-output: html_document
-editor_options: 
-  markdown: 
-    wrap: 72
+Title: "HK COVID-19 CFR and Health Inequality"
+Authors: "Wing Hei Wong, Fatema Khairunnasa, Hsiang-Yu Yuan"
+Date: 03/15/2023
 ---
 
-This repository contains the R codes used in the survival
-analysis of COVID-19 patients in Hong Kong in the project entitled with
-"The impact of economic and demographic conditions on COVID-19 diagnosis
-delays and deaths in Hong Kong". 
+This repository contains the R codes used in the survival analysis of COVID-19 patients in Hong Kong in the project entitled with "The impact of economic and demographic conditions on COVID-19 diagnosis delays and deaths in Hong Kong".
 
-To generate the required graphs, you will need
-to run all the packages/codes mentioned in the top 9 lines of code. You
-can run all the codes in the R script to generate the demographic
-figures used in the project. If there are such package, make sure to
-install these packages first (e.g. install.packages()).
-
+To generate the required graphs, you will need to run all the packages/codes mentioned in the top 9 lines of code. You can run all the codes in the R script to generate the demographic figures used in the project. If there are such package, make sure to install these packages first (e.g. install.packages()).
 
 ##Survival Analysis
 
-The Project Code_Survival Analysis.R, is divided into
-2 parts. -K-M curves, -Cox regression model.
+The Project Code_Survival Analysis.R, is divided into 2 parts. -K-M curves, -Cox regression model.
 
-To produce the Kaplan-Meier (K-M) analysis of all covid-19 patients,
-first you need to run the following required libraries.
+To produce the Kaplan-Meier (K-M) analysis of all covid-19 patients, first you need to run the following required libraries.
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
 library(survival)
@@ -64,8 +50,7 @@ Survival2$Age.Group2<-factor(Survival2$Age.Group2,levels=c("45-64","0-44","65+")
 Survival2$Grouped.Delay.Time.2<-factor(Survival2$Grouped.Delay.Time.2,levels=c("0-10",">10"))
 ```
 
-Then run the following section to reproduce summary results of the
-survival analysis and the K-M plot in total patients.
+Then run the following section to reproduce summary results of the survival analysis and the K-M plot in total patients.
 
 #Kaplan-Meier (K-M) non-parametric analysis of all Covid-19 patients#
 
@@ -88,8 +73,7 @@ KMPlot<-KMPlot$plot+ coord_cartesian(xlim = c(0, 105))
 KMPlot
 ```
 
-Now to get the K-M survival analysis by age, gender and income region
-groups, run the following statements:
+Now to get the K-M survival analysis by age, gender and income region groups, run the following statements:
 
 ##Kaplan-Meier (K-M) non-parametric analysis by group## #Gender group
 
@@ -160,8 +144,7 @@ KMPlot_Income<-KMPlot_Income$plot+ coord_cartesian(xlim = c(0, 105))
 KMPlot_Income
 ```
 
-You can also reproduce the combined graph of above three for the
-comparison purpose.
+You can also reproduce the combined graph of above three for the comparison purpose.
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
 FigureS8<-ggarrange(KMPlot,KMPlot_Gender,KMPlot_Age,KMPlot_Income,
@@ -170,8 +153,7 @@ FigureS8<-ggarrange(KMPlot,KMPlot_Gender,KMPlot_Age,KMPlot_Income,
 FigureS8
 ```
 
-Now for the Kaplan-Meier analysis of the symptomatic patients run the
-following sections.
+Now for the Kaplan-Meier analysis of the symptomatic patients run the following sections.
 
 #Kaplan-Meier (K-M) non-parametric analysis of Symptomatic Patients
 
@@ -194,8 +176,7 @@ KMPlot2<-KMPlot2$plot+ coord_cartesian(xlim = c(0, 105))
 KMPlot2
 ```
 
-You can also reproduce the individual survival summary and plots for
-different age, gender and income group in symptomatic patients using the section below.
+You can also reproduce the individual survival summary and plots for different age, gender and income group in symptomatic patients using the section below.
 
 ##Kaplan-Meier (K-M) non-parametric analysis by group## #Gender group
 
@@ -266,8 +247,7 @@ KMPlot2_Income<-KMPlot2_Income$plot+ coord_cartesian(xlim = c(0, 105))
 KMPlot2_Income
 ```
 
-Using the following statement you can generate the combined graphs of
-the above three groups for the comparative study
+Using the following statement you can generate the combined graphs of the above three groups for the comparative study
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
 FigureS6<-ggarrange(KMPlot2,KMPlot2_Gender,KMPlot2_Age,KMPlot2_Income,
@@ -276,9 +256,7 @@ FigureS6<-ggarrange(KMPlot2,KMPlot2_Gender,KMPlot2_Age,KMPlot2_Income,
 FigureS6
 ```
 
-##Cox regression model#
-For the other part of survival analysis, run the
-following sections.
+##Cox regression model# For the other part of survival analysis, run the following sections.
 
 #Cox proportional hazard model & Assumption#
 
