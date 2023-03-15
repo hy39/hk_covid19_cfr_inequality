@@ -1,0 +1,9 @@
+Income Region,Gender.Age,Number_65,Percentage_65
+High Income Region,Female(≤64 years old),45,6.05
+High Income Region,Male(≤64 years old),56,7.24
+High Income Region,Female(>64 years old),11,7.75
+High Income Region,Male(>64 years old),7,5.07
+Low and Middle Income Region,Female(≤64 years old),141,5.82
+Low and Middle Income Region,Male(≤64 years old),121,5.75
+Low and Middle Income Region,Female(>64 years old),35,6.55
+Low and Middle Income Region,Male(>64 years old),56,10.26
