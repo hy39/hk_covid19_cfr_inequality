@@ -2,7 +2,6 @@
 Title: "HK COVID-19 CFR and Health Inequality"
 Authors: "Wing Hei Wong, Fatema Khairunnasa, Hsiang-Yu Yuan"
 Date: 03/15/2023
-output: pdf_document
 ---
 
 This repository contains the R codes used in the demographic analysis of COVID-19 patients in Hong Kong in the project entitled with "The impact of economic and demographic conditions on COVID-19 diagnosis delays and deaths in Hong Kong".
