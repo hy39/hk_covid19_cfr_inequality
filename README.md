@@ -5,5 +5,5 @@ This repository contains the R codes used in the project entitled with "The impa
 There are two R scripts in this repository, that perform the demographic analysis (Codes_Demographic Analysis.R) and the survival analysis (Codes_Survival Analysis.R) of COVID-19 patients in Hong Kong, respectively. Click the following hyperlinks to go the corresponding sections and you can reproduce the results following the instructions.
 
 User instructions:  
--[Part 1: Demographic analysis](https://github.com/hy39/hk_covid19_cfr_inequality/blob/main/Readme_Demographic.md) 
--[Part 2: Survival analysis](https://github.com/hy39/hk_covid19_cfr_inequality/blob/main/Readme_Survival.md)
+-[Part 1: Demographic analysis](https://github.com/hy39/hk_covid19_cfr_inequality/blob/main/Readme_Demographic.md)  
+-[Part 2: Survival analysis](https://github.com/hy39/hk_covid19_cfr_inequality/blob/main/Readme_Survival.md)  
