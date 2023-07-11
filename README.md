@@ -8,4 +8,4 @@ User instructions:
 -[Part 1: Demographic analysis](https://github.com/hy39/hk_covid19_cfr_inequality/blob/main/Readme_Demographic.md)  
 -[Part 2: Survival analysis](https://github.com/hy39/hk_covid19_cfr_inequality/blob/main/Readme_Survival.md)  
 
-There are two other R scripts Codes_Table1.R produces the values in the Table1 and Codes_Survival Replicate.R performs validation of mediation analysis as described in the end of results section.
+After reading user instructions, you can run Codes_Demographic Analysis.R and Codes_Survival Analysis.R. In addition, there are two other R scripts. Codes_Table1.R produces the values in the Table1 and Codes_Survival Replicate.R performs validation of mediation analysis as described in the end of results section.
