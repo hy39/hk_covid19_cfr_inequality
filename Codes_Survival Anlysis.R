@@ -23,8 +23,26 @@ Survival$Age.Group2<-factor(Survival$Age.Group2,levels=c("45-64","0-44","65+"))
 
 Survival2$Gender<-factor(Survival2$Gender,levels=c("F","M"))
 Survival2$Age.Group<-factor(Survival2$Age.Group,levels=c("0","1","2","3","4"))
-Survival2$Age.Group2<-factor(Survival2$Age.Group2,levels=c("45-64","0-44","65+"))
+Survival2$Age.Group2<-factor(Survival2$Age.Group2,levels=c("45-64","0-44","65+"), labels=c("45-64","0-44","65+"))
 Survival2$Grouped.Delay.Time.2<-factor(Survival2$Grouped.Delay.Time.2,levels=c("0-10",">10"))
+
+# Create binary variable for Age and Income in symptomatic patients
+Survival2$Age.Group3<-Survival2$Age.Group2
+Survival2$Age.Group3 <- as.character(Survival2$Age.Group3)
+Survival2$Age.Group3[which(Survival2$Age.Group3== '45-64')] <- '0-64'
+Survival2$Age.Group3[which(Survival2$Age.Group3== '0-44')] <- '0-64'
+Survival2$Income.Region3<-Survival2$Income.Region
+Survival2$Income.Region3[Survival2$Income.Region3== 'High Income Region'] <- 'High and Middle Income Region'
+Survival2$Income.Region3[Survival2$Income.Region3== 'Middle Income Region'] <- 'High and Middle Income Region'
+
+# Create binary variable for Age and Income in total patients
+Survival$Age.Group3<-Survival$Age.Group2
+Survival$Age.Group3 <- as.character(Survival$Age.Group3)
+Survival$Age.Group3[which(Survival$Age.Group3== '45-64')] <- '0-64'
+Survival$Age.Group3[which(Survival$Age.Group3== '0-44')] <- '0-64'
+Survival$Income.Region3<-Survival$Income.Region
+Survival$Income.Region3[Survival$Income.Region3== 'High Income Region'] <- 'High and Middle Income Region'
+Survival$Income.Region3[Survival$Income.Region3== 'Middle Income Region'] <- 'High and Middle Income Region'
 
 ##Kaplan-Meier (K-M) non-parametric analysis of all Covid-19 patients##
 KMSurvival<-survfit(Surv(Hospitalization.time,event) ~ 1, data= Survival)
@@ -105,10 +123,10 @@ KMPlot_Income<-ggsurvplot(KMSurvival_Income,
 KMPlot_Income<-KMPlot_Income$plot+ coord_cartesian(xlim = c(0, 105))
 KMPlot_Income
 
-FigureS8<-ggarrange(KMPlot,KMPlot_Gender,KMPlot_Age,KMPlot_Income,
+FigureS9<-ggarrange(KMPlot,KMPlot_Gender,KMPlot_Age,KMPlot_Income,
                     labels = c("A","B","C","D"), font.label = list(size = 12),
                     ncol = 2, nrow = 2)
-FigureS8
+FigureS9
 
 #Kaplan-Meier (K-M) non-parametric analysis of Symptomatic Patients
 KMSurvival2<-survfit(Surv(Hospitalization.time,event) ~ 1, data= Survival2)
@@ -189,19 +207,34 @@ KMPlot2_Income<-ggsurvplot(KMSurvival2_Income,
 KMPlot2_Income<-KMPlot2_Income$plot+ coord_cartesian(xlim = c(0, 105))
 KMPlot2_Income
 
-FigureS6<-ggarrange(KMPlot2,KMPlot2_Gender,KMPlot2_Age,KMPlot2_Income,
+FigureS7<-ggarrange(KMPlot2,KMPlot2_Gender,KMPlot2_Age,KMPlot2_Income,
                    labels = c("A","B","C","D"), font.label = list(size = 19),
                    ncol = 2, nrow = 2)
-FigureS6
+FigureS7
 
 #Cox proportional hazard model & Assumption#
-Coxph_Total<- coxph(Surv(Hospitalization.time,event) ~ Age.Group2 + Gender + Income.Region, Survival)
-TableS4<-summary(Coxph_Total)
-TableS4
+# Table S7, estimates of Cox regression for total patients
+Coxph_Total<- coxph(Surv(Hospitalization.time,event) ~ Age.Group3 + Gender + Income.Region3, Survival)
+TableS7<-summary(Coxph_Total)
+TableS7
 
-Coxph_Symptomatic<- coxph(Surv(Hospitalization.time,event) ~ Age.Group2 + Gender + Income.Region + Grouped.Delay.Time.2, data =  Survival2)
-Table2<-summary(Coxph_Symptomatic)
-Table2
+# Table 2, estimates of Cox regression for symptomatic patients
+# Mediation effect model
+Coxph_Symptomatic <- coxph(Surv(Hospitalization.time,event) ~ Age.Group3 + Gender + Income.Region3 + Grouped.Delay.Time.2, data =  Survival2)
+Table2_Mediation<-summary(Coxph_Symptomatic)
+Table2_Mediation
 
+# Full effect model
+Coxph_Symptomatic_full <- coxph(Surv(Hospitalization.time,event) ~ Age.Group3 + Gender + Income.Region3, data =  Survival2)
+Table2_TotalEffect<-summary(Coxph_Symptomatic_full)
+Table2_TotalEffect
+
+# Table S4, estimates of logistic regression against severe reporting delay
+med.model2 <- glm(Grouped.Delay.Time.2 ~ Age.Group3 + Gender + Income.Region3, family = binomial("logit"), data = Survival2)
+summary(med.model2)
+exp(summary(med.model2)$coefficients[,1])
+exp(confint(med.model2))
+
+# Table S3, hazard assumption of Cox regression
 TableS3<- cox.zph(Coxph_Symptomatic)
 TableS3
