@@ -1,6 +1,6 @@
 # hk_covid19_cfr_inequality
 
-This repository contains the R codes used in the project entitled with "The impact of demographic and socioeconomic conditions on COVID-19 deaths and reporting delays in Hong Kong". Using the codes of this repository, you can reproduce the same results. Before running the codes in the R scripts, please make sure all the data files (csv format) were downloaded into data folder from this repository first. Then set the working directory to your source files location.
+This repository contains the R codes used in the project entitled with "The Impacts of Income and Demographics on COVID-19 Deaths under Equitable Access to Testing and Hospital Services in Hong Kong". Using the codes of this repository, you can reproduce the same results. Before running the codes in the R scripts, please make sure all the data files (csv format) were downloaded into data folder from this repository first. Then set the working directory to your source files location.
 
 There are two readme files to give user instructions on performing demographica anslysis and survuval analaysis of COVID-19 patients in Hong Kong. Click the following hyperlinks to go the corresponding sections and you can reproduce the results following the instructions.
 
