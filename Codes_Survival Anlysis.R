@@ -104,13 +104,13 @@ KMPlot_Age<-KMPlot_Age$plot+ coord_cartesian(xlim = c(0, 105))
 KMPlot_Age
 
 #Income Regions Group
-KMSurvival_Income <- survfit(Surv(Hospitalization.time,event) ~ Income.Region, data=Survival)
+KMSurvival_Income <- survfit(Surv(Hospitalization.time,event) ~ Income.Region3, data=Survival)
 summary(KMSurvival_Income)
 KMPlot_Income<-ggsurvplot(KMSurvival_Income,
-                          xlab= "Day", ylab= "Survival probability",
+                          xlab= "Time since reporting(day)", ylab= "Survival probability",
                           legend.title="Income region",pval = TRUE, pval.coord = c(1, 0.55), pval.size= 8,
                           conf.int = F, conf.int.alpha= 0.2, font.legend = list(size = 24, face = "bold"),
-                          legend.labs= c("High income region","Low income region","Middle income region"),
+                          legend.labs= c("High/middle\nincome region","Low income\n region"),
                           ylim= c(0.5,1),
                           risk.table.fontsize = 5.5,
                           censor= T, censor.shape= 124, censor.size= 2,
@@ -188,12 +188,12 @@ KMPlot2_Age<-KMPlot2_Age$plot+ coord_cartesian(xlim = c(0, 105))
 KMPlot2_Age
 
 #Income Regions Group
-KMSurvival2_Income <- survfit(Surv(Hospitalization.time,event) ~ Income.Region, data=Survival2)
+KMSurvival2_Income <- survfit(Surv(Hospitalization.time,event) ~ Income.Region3, data=Survival2)
 summary(KMSurvival2_Income)
 KMPlot2_Income<-ggsurvplot(KMSurvival2_Income,
-                           xlab= "Day", ylab= "Survival probability",
+                           xlab= "Time since reporting(day)", ylab= "Survival probability",
                            legend.title="Income region",pval = TRUE, pval.coord = c(1, 0.55), pval.size= 8,
-                           legend.labs= c("High income region","Low income region","Middle income region"),
+                           legend.labs= c("High & middle\nincome region","Low income\nregion"),
                            conf.int = F, conf.int.alpha= 0.2, font.legend = list(size = 24, face = "bold"),
                            ylim= c(0.5,1),
                            risk.table.fontsize = 5.5,
