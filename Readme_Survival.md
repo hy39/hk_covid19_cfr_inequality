@@ -12,7 +12,7 @@ To generate the required graphs, you will need to run all the packages/codes men
 
 The Project Code_Survival Analysis.R, is divided into 2 parts. -K-M curves, -Cox regression model.
 
-To produce the Kaplan-Meier (K-M) analysis of all covid-19 patients, first you need to run the following required libraries.
+To produce the Kaplan-Meier (K-M) analysis of all COVID-19 patients, first you need to run the following required libraries.
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
 library(survival)
@@ -70,7 +70,7 @@ Survival$Income.Region3[Survival$Income.Region3== 'Middle Income Region'] <- 'Hi
 
 Then run the following section to reproduce summary results of the survival analysis and the K-M plot in total patients.
 
-#Kaplan-Meier (K-M) non-parametric analysis of all Covid-19 patients#
+#Kaplan-Meier (K-M) non-parametric analysis of all COVID-19 patients#
 
 ```{r message=FALSE, warning=FALSE}
 KMSurvival<-survfit(Surv(Hospitalization.time,event) ~ 1, data= Survival)
@@ -245,12 +245,12 @@ KMPlot2_Age
 #Income Regions Group
 
 ```{r message=FALSE, warning=FALSE}
-KMSurvival2_Income <- survfit(Surv(Hospitalization.time,event) ~ Income.Region, data=Survival2)
+KMSurvival2_Income <- survfit(Surv(Hospitalization.time,event) ~ Income.Region3, data=Survival2)
 summary(KMSurvival2_Income)
 KMPlot2_Income<-ggsurvplot(KMSurvival2_Income,
-                           xlab= "Day", ylab= "Survival probability",
+                           xlab= "Time since reporting(day)", ylab= "Survival probability",
                            legend.title="Income region",pval = TRUE, pval.coord = c(1, 0.55), pval.size= 8,
-                           legend.labs= c("High income region","Low income region","Middle income region"),
+                           legend.labs= c("High & middle\nincome region","Low income\nregion"),
                            conf.int = F, conf.int.alpha= 0.2, font.legend = list(size = 24, face = "bold"),
                            ylim= c(0.5,1),
                            risk.table.fontsize = 5.5,
