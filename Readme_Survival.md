@@ -142,13 +142,13 @@ KMPlot_Age
 #Income Regions Group
 
 ```{r message=FALSE, warning=FALSE}
-KMSurvival_Income <- survfit(Surv(Hospitalization.time,event) ~ Income.Region, data=Survival)
+KMSurvival_Income <- survfit(Surv(Hospitalization.time,event) ~ Income.Region3, data=Survival)
 summary(KMSurvival_Income)
 KMPlot_Income<-ggsurvplot(KMSurvival_Income,
-                          xlab= "Day", ylab= "Survival probability",
+                          xlab= "Time since reporting(day)", ylab= "Survival probability",
                           legend.title="Income region",pval = TRUE, pval.coord = c(1, 0.55), pval.size= 8,
-                          conf.int = F, conf.int.alpha= 0.2, font.legend = list(size = 12, face = "bold"),
-                          legend.labs= c("High income region","Low income region","Middle income region"),
+                          conf.int = F, conf.int.alpha= 0.2, font.legend = list(size = 24, face = "bold"),
+                          legend.labs= c("High/middle\nincome region","Low income\n region"),
                           ylim= c(0.5,1),
                           risk.table.fontsize = 5.5,
                           censor= T, censor.shape= 124, censor.size= 2,
